@@ -1,7 +1,8 @@
 class Currency {
     constructor() {
 
-        this.url = 'https://v6.exchangerate-api.com/v6/8c58f9198e8a1a192a1c20cd/latest/';
+        this.url = ' https://v6.exchangerate-api.com/v6/cd51983b296dca5cad204eb5/latest/';
+       
     }
     async exchange(amount, firstCurrency, secondCurrency) {
         const response = await fetch(`${this.url}${firstCurrency}`);
