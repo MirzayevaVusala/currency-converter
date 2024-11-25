@@ -65,7 +65,7 @@ function removeLeadingZeros(value) {
     return `${cleanedInteger}.${decimal}`;
 }
 
-// Function to limit decimal places to 5
+
 function limitDecimalPlaces(value) {
     const [integer, decimal] = value.split('.');
     if (decimal) {
@@ -75,14 +75,14 @@ function limitDecimalPlaces(value) {
 }
 
 leftInput.addEventListener('input', () => {
-    leftInput.value = removeLeadingZeros(leftInput.value.replace(',', '.'));
+    leftInput.value = removeLeadingZeros(leftInput.value.replace(',', '.').replace(/[^0-9.,]/g, ''));
     leftInput.value = limitDecimalPlaces(leftInput.value);
     lastInput = 'left';
     exchange();
 });
 
 rightInput.addEventListener('input', () => {
-    rightInput.value = removeLeadingZeros(rightInput.value.replace(',', '.'));
+    rightInput.value = removeLeadingZeros(rightInput.value.replace(',', '.').replace(/[^0-9.,]/g, ''));
     rightInput.value = limitDecimalPlaces(rightInput.value);
     lastInput = 'right';
     exchange();
@@ -92,7 +92,7 @@ leftInput.addEventListener('click', () => {
     if (leftInput.value === '0.00000') {
         leftInput.value = '';
     }
-    leftInput.value = leftInput.value.replace(',', '.');
+    leftInput.value = leftInput.value.replace(',', '.').replace(/[^0-9.,]/g, '');
     lastInput = 'left';
 });
 
@@ -100,7 +100,7 @@ rightInput.addEventListener('click', () => {
     if (rightInput.value === '0.00000') {
         rightInput.value = '';
     }
-    rightInput.value = rightInput.value.replace(',', '.');
+    rightInput.value = rightInput.value.replace(',', '.').replace(/[^0-9.,]/g, '');
     lastInput = 'right';
 });
 
