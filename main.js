@@ -58,12 +58,16 @@ secondButtonContainer.addEventListener('click', (event) => {
 
 function removeLeadingZeros(value) {
     if (value.indexOf('.') === -1) {
-        return value.replace(/^0+/, '');
+        if (value === "0") {
+            return "0";
+        }
+        return value.replace(/^0+(?![.,])/g, '');
     }
     const [integer, decimal] = value.split('.');
-    const cleanedInteger = integer.replace(/^0+/, '0') || '0';
+    const cleanedInteger = (integer === '0' && decimal[0] !== '.') ? '0' : integer.replace(/^0+(?=\d)/, '');
     return `${cleanedInteger}.${decimal}`;
 }
+
 
 
 function limitDecimalPlaces(value) {
